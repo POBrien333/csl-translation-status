@@ -170,7 +170,7 @@ def generate_locale_page(lang_code: str, lang_name: str, untranslated_terms: Lis
 <body>
     <h1>Untranslated Terms for {0} ({1})</h1>
     <p>Showing {2} untranslated terms out of {3} total terms. Last updated: September 07, 2025.</p>
-    <p><a href="../index.html">Back to Translation Status</a></p>
+    <p><a href="../docs/index.html">Back to Translation Status</a></p>
     <table>
         <thead>
             <tr>
@@ -362,7 +362,7 @@ def main():
 
     for res in results:
         html_content += f"""            <tr>
-                <td><a href="locales/locale_{res['lang_code']}.html">{res['language']} ({res['lang_code']})</a></td>
+                <td><a href="../locales/locale_{res['lang_code']}.html">{res['language']} ({res['lang_code']})</a></td>
                 <td>{res['translated_count']}</td>
                 <td>{res['untranslated_count']}</td>
                 <td>{res['percentage']:.1f}%</td>
@@ -375,12 +375,12 @@ def main():
 </body>
 </html>"""
 
-    # 6. Write main HTML content to a file
-    with open("index.html", "w", encoding="utf-8") as f:
+    # 6. Write main HTML content to a file in docs/
+    os.makedirs("docs", exist_ok=True)
+    with open("docs/index.html", "w", encoding="utf-8") as f:
         f.write(html_content)
     
-    print(f"\nHTML file 'index.html' has been generated with {len(results)} locales.")
+    print(f"\nHTML file 'docs/index.html' has been generated with {len(results)} locales.")
 
 if __name__ == "__main__":
-
     main()
