@@ -51,8 +51,12 @@ jobs:
 
     - name: Prepare Pages artifact
       run: |
-        mkdir -p artifact
-        cp -r docs locales artifact/
+        mkdir -p artifact/docs
+        mkdir -p artifact/locales
+        cp docs/index.html artifact/docs/index.html
+        cp -r locales/* artifact/locales/
+        echo "Listing artifact contents for debugging:"
+        ls -R artifact/
       shell: bash
 
     - name: Setup Pages
