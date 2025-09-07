@@ -12,6 +12,8 @@ jobs:
       contents: write  # Needed to commit changes
       pages: write    # Needed for GitHub Pages deployment
       id-token: write  # Needed for actions/deploy-pages
+    environment:
+      name: github-pages  # Required for actions/deploy-pages
 
     steps:
     - name: Checkout repository
