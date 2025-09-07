@@ -170,7 +170,7 @@ def generate_locale_page(lang_code: str, lang_name: str, untranslated_terms: Lis
 <body>
     <h1>Untranslated Terms for {0} ({1})</h1>
     <p>Showing {2} untranslated terms out of {3} total terms. Last updated: September 07, 2025.</p>
-    <p><a href="../translation_status.html">Back to Translation Status</a></p>
+    <p><a href="../index.html">Back to Translation Status</a></p>
     <table>
         <thead>
             <tr>
@@ -376,10 +376,11 @@ def main():
 </html>"""
 
     # 6. Write main HTML content to a file
-    with open("translation_status.html", "w", encoding="utf-8") as f:
+    with open("index.html", "w", encoding="utf-8") as f:
         f.write(html_content)
     
-    print(f"\nHTML file 'translation_status.html' has been generated with {len(results)} locales.")
+    print(f"\nHTML file 'index.html' has been generated with {len(results)} locales.")
 
 if __name__ == "__main__":
+
     main()
