@@ -103,8 +103,8 @@ def parse_locale_terms(xml_string: str) -> Dict[Tuple[str, str], str | Tuple[str
 
 def generate_locale_page(lang_code: str, lang_name: str, untranslated_terms: List[Dict], total_terms: int):
     """Generates an HTML page listing untranslated terms for a specific locale."""
-    # Ensure the 'locales' directory exists
-    os.makedirs("locales", exist_ok=True)
+    # Ensure the 'docs/locales' directory exists
+    os.makedirs("docs/locales", exist_ok=True)
     
     html_content = """<!DOCTYPE html>
 <html lang="en">
@@ -170,7 +170,7 @@ def generate_locale_page(lang_code: str, lang_name: str, untranslated_terms: Lis
 <body>
     <h1>Untranslated Terms for {0} ({1})</h1>
     <p>Showing {2} untranslated terms out of {3} total terms. Last updated: September 07, 2025.</p>
-    <p><a href="../docs/index.html">Back to Translation Status</a></p>
+    <p><a href="../index.html">Back to Translation Status</a></p>
     <table>
         <thead>
             <tr>
@@ -202,9 +202,9 @@ def generate_locale_page(lang_code: str, lang_name: str, untranslated_terms: Lis
 </body>
 </html>"""
 
-    with open(f"locales/locale_{lang_code}.html", "w", encoding="utf-8") as f:
+    with open(f"docs/locales/locale_{lang_code}.html", "w", encoding="utf-8") as f:
         f.write(html_content)
-    print(f"Generated locale page for {lang_name} ({lang_code}): locales/locale_{lang_code}.html")
+    print(f"Generated locale page for {lang_name} ({lang_code}): docs/locales/locale_{lang_code}.html")
 
 def main():
     """Main function to perform the analysis and generate HTML tables."""
@@ -362,7 +362,7 @@ def main():
 
     for res in results:
         html_content += f"""            <tr>
-                <td><a href="../locales/locale_{res['lang_code']}.html">{res['language']} ({res['lang_code']})</a></td>
+                <td><a href="locales/locale_{res['lang_code']}.html">{res['language']} ({res['lang_code']})</a></td>
                 <td>{res['translated_count']}</td>
                 <td>{res['untranslated_count']}</td>
                 <td>{res['percentage']:.1f}%</td>
