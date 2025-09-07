@@ -8,10 +8,16 @@ on:
 jobs:
   update-translation-status:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write  # Needed to commit changes
+      pages: write    # Needed for GitHub Pages deployment
 
     steps:
     - name: Checkout repository
       uses: actions/checkout@v4
+      with:
+        ref: main  # Ensure the main branch is checked out (adjust if using a different branch)
+        fetch-depth: 0  # Full history for accurate diff
 
     - name: Set up Python
       uses: actions/setup-python@v5
@@ -30,20 +36,28 @@ jobs:
       run: |
         git config --global user.name 'GitHub Action'
         git config --global user.email 'action@github.com'
-        git add translation_status.html locales/
-        git diff --staged --quiet || git commit -m "Update translation status HTML files"
-        git push
+        git add docs/index.html locales/ || echo "No files to add"
+        if git diff --staged --quiet; then
+          echo "No changes to commit"
+        else
+          git commit -m "Update translation status HTML files" || echo "Commit failed, likely no changes"
+          git push || echo "Push failed, check permissions or branch protection"
+        fi
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-    - name: Deploy to GitHub Pages
-      uses: peaceiris/actions-gh-pages@v4
+    - name: Setup Pages
+      uses: actions/configure-pages@v5
+
+    - name: Upload artifact
+      uses: actions/upload-pages-artifact@v3
       with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: ./
-        keep_files: false
-        exclude_files: |
+        path: ./
+        exclude: |
           .github/**
           csl-translation-status-output.py
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+    - name: Deploy to GitHub Pages
+      uses: actions/deploy-pages@v4
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
