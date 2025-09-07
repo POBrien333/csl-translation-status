@@ -11,6 +11,7 @@ jobs:
     permissions:
       contents: write  # Needed to commit changes
       pages: write    # Needed for GitHub Pages deployment
+      id-token: write  # Needed for actions/deploy-pages
 
     steps:
     - name: Checkout repository
@@ -46,16 +47,19 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
+    - name: Prepare Pages artifact
+      run: |
+        mkdir -p artifact
+        cp -r docs locales artifact/
+      shell: bash
+
     - name: Setup Pages
       uses: actions/configure-pages@v5
 
     - name: Upload artifact
       uses: actions/upload-pages-artifact@v3
       with:
-        path: ./
-        exclude: |
-          .github/**
-          csl-translation-status-output.py
+        path: artifact/
 
     - name: Deploy to GitHub Pages
       uses: actions/deploy-pages@v4
