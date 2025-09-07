@@ -347,6 +347,7 @@ def main():
 <body>
     <h1>CSL Locale Translation Status</h1>
     <p>Generated dynamically from the official <a class="csl-link" href="https://github.com/citation-style-language/locales">CSL locales repository</a>. Last updated: September 07, 2025.</p>
+    <p>Want to help? Head over to the locale of your native language and submit a PR with new translations</p>
     <p class="updated">Total locales analyzed: {0}</p>
     <table>
         <thead>
@@ -384,3 +385,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
