@@ -5,7 +5,7 @@ See the field mappings visualised here:
 👉[CSL Translation Status HTML Output](https://pobrien333.github.io/csl-translation-status/)👈
 
 The script takes the CSL locales from the [CSL Locales repository](https://github.com/citation-style-language/locales) and compares them to the en-US locale to test for translated/untranslated terms and outputs the translation status.
-This script will be run *daily*.
+This script will be run *weekly*.
 
 ## Changelog
 ### v1 - 07/09/2025
