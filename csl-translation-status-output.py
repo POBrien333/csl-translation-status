@@ -193,9 +193,8 @@ tr:hover {{ background-color: #f5f5f5; }}
 </head>
 <body>
 <h1>CSL Locale Translation Status</h1>
-<p>Generated dynamically from the official <a href="https://github.com/citation-style-language/locales">CSL locales repository</a>.</p>
-<p>Last updated: {last_updated}</p>
-<p>Want to help? Head over to the locale of your native language and submit a PR with new translations</p>
+<p>Generated dynamically from the official <a href="https://github.com/citation-style-language/locales">CSL locales repository</a>. Last updated: {last_updated}</p>
+<p>Want to help? Head over to <a href="https://github.com/citation-style-language/locales">GitHub</a> and submit a PR with new translations for your native language.</p>
 <p class="updated">Total locales analyzed: {len(results)}</p>
 <table>
 <thead><tr><th>Language</th><th>Translated Terms</th><th>Untranslated Terms</th><th>Translation %</th></tr></thead>
@@ -212,4 +211,5 @@ tr:hover {{ background-color: #f5f5f5; }}
 
 if __name__ == "__main__":
     main()
+
 
