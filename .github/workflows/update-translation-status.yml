@@ -17,7 +17,7 @@ jobs:
 
     steps:
     - name: Checkout repository
-      uses: actions/checkout@v4
+      uses: actions/checkout@v5
       with:
         ref: main  # Ensure the main branch is checked out (adjust if using a different branch)
         fetch-depth: 0  # Full history for accurate diff
@@ -61,11 +61,11 @@ jobs:
       uses: actions/configure-pages@v5
 
     - name: Upload artifact
-      uses: actions/upload-pages-artifact@v3
+      uses: actions/upload-pages-artifact@v4
       with:
         path: artifact/
 
     - name: Deploy to GitHub Pages
-      uses: actions/deploy-pages@v4
+      uses: actions/deploy-pages@v5
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
